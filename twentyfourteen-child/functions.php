@@ -785,6 +785,10 @@ function email_zero($remainingtime, $totalhourspurchased, $totalhoursinvested) {
 add_action( 'save_post', 'time_entry_updated' );
 
 
+
+
+
+
 function check_ifnew_task($postid) {
 	$daycomputed2 = (strtotime(date( 'd-m-Y', current_time( 'timestamp', 1 )))) - (strtotime(get_the_time('d-m-Y', $postid)));
 	$daycomputed2 = $daycomputed2 / (60 * 60 * 24) ;
@@ -797,7 +801,4 @@ function check_ifnew_task($postid) {
 		return NULL;
 	}
 	
-}
-
-
-
+	}

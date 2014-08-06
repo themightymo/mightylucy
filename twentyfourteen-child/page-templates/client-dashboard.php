@@ -168,25 +168,16 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?> (<?php the_field('how_many_hours_will_this_to-do_require'); ?>&nbsp;<?php if (get_field('how_many_hours_will_this_to-do_require') == 1) { echo 'hour'; } else { echo 'hours'; } ?>)</a><?php if (get_field('assigned_to')){
 										$assigned_to = get_field('assigned_to');
 										echo ' [' . $assigned_to['display_name'] . ']';
-										
 									} 
 									$totalHoursEstimated += get_field('how_many_hours_will_this_to-do_require');
-									//print_r(get_post_meta( get_the_ID() ));
-									
-									
-									
 									if (check_ifnew_task( $post->ID))	{
 									echo '<div style="background:#FEFF00;color:#000;display: inline-block;padding: 1px 5px;margin-left: 10px;">NEW</div>';
 									} 
 									
 									
-									?>	
-												
+									?>				
 								</li>
 								<?php 
-							
-
-								
 							endforeach; 
 							wp_reset_postdata();?>
 							</ul>
