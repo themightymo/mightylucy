@@ -925,3 +925,8 @@ function gk_comment_form( $fields ) {
     return $fields;
 }
 add_filter( 'comment_form_defaults', 'gk_comment_form' );
+
+//updates maximum upload
+@ini_set( 'upload_max_size' , '64M' );
+@ini_set( 'post_max_size', '64M');
+@ini_set( 'max_execution_time', '300' );
