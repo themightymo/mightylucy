@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Client Dashboard
+ * Template Name: Interface 2 Client Dashboard
  *
  * @package WordPress
  * @subpackage Twenty_Fourteen
