@@ -1,4 +1,12 @@
 <?php
+// Enqueue Angular.js via http://alisaryanherr.com/tag/angularjs/
+function theme_scripts() {
+	wp_enqueue_script( 'angular-core', '//ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js', array(), '', true );
+	wp_enqueue_script( 'angular-sanitize', '//ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular-sanitize.js', array('angular-core'), '', true );
+	wp_enqueue_script( 'angular-app', get_stylesheet_directory_uri() . '/assets/js/app.js', array('angular-sanitize'), '', true );
+}
+add_action('wp_enqueue_scripts', 'theme_scripts');
+
 if(function_exists("register_field_group"))
 {
 	
