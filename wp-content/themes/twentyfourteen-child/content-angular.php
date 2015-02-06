@@ -10,54 +10,6 @@
  */
 ?>
 
-<script>
-
-        function WpRestController($scope, $http) {
-
-            $scope.viewList = true;
-
-            $scope.getOnePost = function(id) {
-                $http({
-                    method : 'GET',
-                    url : '/wp-json/posts/' + id
-                })
-                .success(function(data, status) {
-                    $scope.oneTitle = data.title;
-                    $scope.oneContent = data.content;
-                    $scope.viewList = false;
-                })
-                .error(function(data, status) {
-                    console.dir(status);
-                });
-            }
-            
-            $scope.backToList = function() {
-                $scope.viewList = true;
-            }
-            
-            $scope.getItems = function() {
-
-                $http({
-                    method : 'GET',
-                    url : '/wp-json/posts?type=user_story&filter[user_story_done_or_not]=active'
-                    //url : 'http://localhost/wp-json/posts?filter[type]=user_story&filter[user_story_done_or_not]=active'
-                })
-                .success(function(data, status) {
-                    $scope.data = data;
-                })
-                .error(function(data, status) {
-                    console.dir(status);
-                });
-            }
-
-        }
-
-        angular.module('app', [])
-            .controller('WpRestController', WpRestController)
-            .filter('unsafe', function($sce) { return $sce.trustAsHtml; });
-
-    </script>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> ng-app="example">
 	
 

@@ -5,7 +5,7 @@ function WpRestController($scope, $http) {
             $scope.getOnePost = function(id) {
                 $http({
                     method : 'GET',
-                    url : '/wp-json/posts/' + id
+                    url : 'https://summitsalon.mightylucy.dev/?json=1' + id
                 })
                 .success(function(data, status) {
                     $scope.oneTitle = data.title;
@@ -25,7 +25,7 @@ function WpRestController($scope, $http) {
 
                 $http({
                     method : 'GET',
-                    url : '/?json=1'
+                    url : 'https://summitsalon.mightylucy.dev/?json=1'
                 })
                 .success(function(data, status) {
                     $scope.data = data;
