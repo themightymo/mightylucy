@@ -52,7 +52,7 @@ get_header(); ?>
 					*  This method uses the meta_query LIKE to match the string "123" to the database value a:1:{i:0;s:3:"123";} (serialized array)
 					*/
 			
-					$doctors = get_posts(array(
+					$time_entries = get_posts(array(
 						'post_type' => 'time_entry',
 						'meta_query' => array(
 							array(
@@ -64,24 +64,38 @@ get_header(); ?>
 					));
 			
 					?>
-					<?php if( $doctors ): ?>
+					<?php if( $time_entries ): ?>
 						<quote>
 							Time Entries for This To-Do:
 							<ul>
-							<?php foreach( $doctors as $doctor ): ?>
-								<?php 
-				
-								$photo = get_field('hours_invested', $doctor->ID);
-				
-								?>
-								<li>
-									<a href="<?php echo get_permalink( $doctor->ID ); ?>">
-										<?php echo get_the_title( $doctor->ID ); ?> (<?php echo $photo; ?> hours)
-										<?php $totalHoursWorked += $photo; ?> 
-									</a>
-								</li>
-							<?php endforeach; ?>
+								
+								<?php foreach( $time_entries as $time_entry ): ?>
+									<?php 
+									
+									// Sort the billable from the non-billable hours
+									$time_entry_categories = get_field('time_entry_categories', $time_entry->ID);
+									foreach ( $time_entry_categories as $time_entry_category ) {
+										
+										echo get_term_by($time_entry_category);
+									}
+									
+									
+									
+									//var_dump($time_entry_categories);		
+									
+									$hours_invested = get_field('hours_invested', $time_entry->ID);
+									
+									?>
+									<li>
+										<a href="<?php echo get_permalink( $time_entry->ID ); ?>">
+											<?php echo get_the_title( $time_entry->ID ); ?> (<?php echo $hours_invested; ?> hours)
+											<?php $totalHoursWorked += $hours_invested; ?> 
+										</a>
+									</li>
+								<?php endforeach; ?>
+							
 								<li>Total hours invested on this to-do: <?php echo $totalHoursWorked; ?></li>
+								<li>Total billable hours invested on this to-do: <?php echo $totalBillableHoursWorked; ?></li>
 							</ul>
 						</quote>
 					<?php 
