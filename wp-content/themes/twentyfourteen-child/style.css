@@ -77,7 +77,6 @@ li.redhr a{
    text-align:center;
    margin:0px auto;
    width:40%;
-   
 }
 
 #t_story_status table td,
@@ -110,4 +109,20 @@ li.redhr a{
 }
 .wp-editor-container {
 	border:1px solid #ccc;
+}
+
+.comment>.comment-body {
+	border-left: 1px solid rgba(0,0,0,0.27);
+	border-top: 1px solid rgba(128,128,128,0.27);
+	border-bottom: 1px solid rgba(128,128,128,0.27);
+	padding: 20px;
+	margin: 1px 0px;
+}
+
+.comment-list {
+	border-right: 1px solid rgba(0,0,0,0.27);
+}
+
+.comment-list > li:first-child > article {
+	border-top: 1px solid rgba(128,128,128,0.27);
 }
