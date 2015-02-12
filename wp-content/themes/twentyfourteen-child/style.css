@@ -112,7 +112,7 @@ li.redhr a{
 }
 
 .comment>.comment-body {
-	border-left: 1px solid rgba(0,0,0,0.27);
+	border-left: 1px solid rgba(128,128,128,0.27);
 	border-top: 1px solid rgba(128,128,128,0.27);
 	border-bottom: 1px solid rgba(128,128,128,0.27);
 	padding: 20px;
