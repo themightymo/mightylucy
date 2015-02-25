@@ -62,8 +62,20 @@ get_header(); ?>
 							)
 						)
 					));
-			
+						/*									*\
+							This will contain the Time entry 
+							from the Todo View  
+						\*									*/
+					
+						if ( ! is_admin() ) {
+						
+						/*									*\
+							End feature 
+						\*									*/
+													
+						} 
 					?>
+					
 					<?php if( $doctors ): ?>
 						<quote>
 							Time Entries for This To-Do:
