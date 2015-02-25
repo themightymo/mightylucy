@@ -942,7 +942,7 @@ function gk_comment_form( $fields ) {
 
 function dev_hours_scripts() {
 	if ( is_page ( 'report-all-dev-hours' ) ) {
-		wp_enqueue_script( 'dev-hours', get_template_directory_uri() . '/js/dev-hours.js', array(), '1.0.0', true );
+		wp_enqueue_script( 'dev-hours', get_template_directory_uri() . '-child/js/dev-hours.js', array(), '1.0.0', true );
 	}
 }
 
