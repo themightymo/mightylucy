@@ -154,7 +154,7 @@ wp-content/mysql.sql
 /wp-content/themes/index.php
 /wp-content/plugins/index.php
 /wp-content/themes/twentyfifteen
-/wp-content/themes/twentyfourteen
+
 
 # site environment variants
 .htaccess
