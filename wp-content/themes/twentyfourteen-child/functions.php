@@ -970,3 +970,11 @@ add_action('template_redirect', 'front_end_ajax_available');
 add_action("wp_ajax_get_developers_hours", "get_developers_hours");
 add_action("wp_ajax_nopriv_get_developers_hours", "get_developers_hours");
 
+
+
+
+function hack_default_option_inprogress() 
+{	
+	wp_enqueue_script( 'default_option', get_template_directory_uri() . '-child/js/default_inprogress.js', array(), '1.0.0', true );	
+}
+add_action( 'admin_init', 'hack_default_option_inprogress' );
