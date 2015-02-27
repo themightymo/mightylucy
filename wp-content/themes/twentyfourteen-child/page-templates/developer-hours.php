@@ -43,9 +43,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 						<div id="date-ranges">
 							<input type="date" id="rangeFrom" value="<?php echo date('Y-m-d'); ?>"/> <i>to</i> <input type="date" id="rangeTo" value="<?php echo date('Y-m-d'); ?>" />
 						</div>
-							
-							<table id="myTable" class="tablesorter">
-								<thead>
+							<table id="dev_hours" ><thead>
 									<tr>
 									   <th>Sitename</th>
 									   <th>Hours Invested</th>
@@ -55,20 +53,12 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 									   <th>Post Meta</th>
 									</tr>
 								</thead>
-								<tfoot>
-									<tr>
-									   <td>Sitename</td>
-									   <td>Hours Invested</td>
-									   <td>Date Worked</td>
-									   <td>Developer</td>
-									   <td>Billable?</td>
-									   <td>Post ID</td>
-									</tr>
-								</tfoot>
-								</tbody>
-							</table>	
+                                <tbody></tbody>
+                                
+                            </table>
 							
-							<input id="table2CSV" value="Export as CSV text" type="button" onclick="jquery('#myTable').table2CSV()">						
+							
+							<input id="table2CSV" value="Export as CSV text" type="button" onclick="jquery('#dev_hours').table2CSV()">						
 						</div><!-- .entry-content -->
 						
 					</article><!-- #post-## -->

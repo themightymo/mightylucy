@@ -1,4 +1,7 @@
 <?php
+
+
+
 if(function_exists("register_field_group"))
 {
 	
@@ -940,10 +943,30 @@ function gk_comment_form( $fields ) {
 }
 //add_filter( 'comment_form_defaults', 'gk_comment_form' );
 
-function dev_hours_scripts() {
+/*function dev_hours_scripts() {
 	if ( is_page ( 'report-all-dev-hours' ) ) {
-		wp_enqueue_script( 'dev-hours', get_template_directory_uri() . '-child/js/dev-hours.js', array(), '1.0.0', true );
+		wp_enqueue_script( 'dev_hours', get_template_directory_uri() . '-child/js/dev-hours.js', array(), '1.0.0', true );
 	}
 }
 
-add_action( 'wp_enqueue_scripts', 'dev_hours_scripts' );
+add_action( 'wp_enqueue_scripts', 'dev_hours_scripts' );*/
+
+$dirName = dirname(__FILE__);
+$baseName = basename(realpath($dirName));
+
+require_once ("$dirName/ajax/developer-hours.php");
+
+function front_end_ajax_available() 
+{     
+	if ( is_page ( 'report-all-dev-hours' ) ) {
+		
+		wp_enqueue_script( 'dev_hours', get_template_directory_uri() . '-child/js/dev-hours.js', array(), '1.0.0', true );
+		wp_localize_script( 'dev_hours', 'front_end_ajax_identificator', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+	}
+}
+
+add_action('template_redirect', 'front_end_ajax_available');
+
+add_action("wp_ajax_get_developers_hours", "get_developers_hours");
+add_action("wp_ajax_nopriv_get_developers_hours", "get_developers_hours");
+

@@ -4,43 +4,52 @@
  */
 ( function( $ ) {
 	
-	$('#myTable').dataTable( {
-        "ajax": '../ajax/data/arrays.txt'
-    } );
-	
-	
-	$.fn.dataTable.ext.search.push(
-	    function( settings, data, dataIndex ) {
-		    var from = $('#rangeFrom').val();
-		    var rmin = from.substr(0,4)+from.substr(5,2)+from.substr(8,2)+'';
-	
-		    var rto = $('#rangeTo').val();
-		    var rmax = rto.substr(0,4)+rto.substr(5,2)+rto.substr(8,2)+'';
-
-	        var min = parseInt( rmin, 10 );
-	        var max = parseInt( rmax, 10 );
-	        var age = parseFloat( data[2] ) || 0; // use data for the age column
-	 
-	        if ( ( isNaN( min ) && isNaN( max ) ) ||
-	             ( isNaN( min ) && age <= max ) ||
-	             ( min <= age   && isNaN( max ) ) ||
-	             ( min <= age   && age <= max ) )
-	        {
-	            return true;
-	        }
-	        return false;
-	    }
-	);
 
 	$( function() {
-		var table = $('#myTable').DataTable();
+		//var table = $('#myTable').DataTable();
 						
-		$('#rangeFrom, #rangeTo').change( function() {
-			table.draw();
+		jQuery('#rangeFrom, #rangeTo').change( function() {
+			if (jQuery('#rangeFrom').val() && jQuery('#rangeTo').val() ) {
+				populate_developer_hours_table( );
+			}
 		} );
 		
-		$('#rangeTo').trigger( 'change' );
+		jQuery('#rangeTo').trigger( 'change' );
 
 	} );
 	
+	
+	
+	
 } )( jQuery );
+
+
+
+function populate_developer_hours_table(){
+	destroyDatatable();
+	devTable = jQuery("#dev_hours").dataTable( {
+				"ajax": {
+							url: front_end_ajax_identificator.ajaxurl,
+						 	data: ({action : 'get_developers_hours', start_date: jQuery('#rangeFrom').val(), end_date: jQuery('#rangeTo').val() }),
+						 	
+							type: "GET"
+						},
+				"columns": [
+					{ "title":"sitename" },
+				    { "title":"hours" },
+				    { "title":"date" },
+				    { "title":"developer" },
+				    { "title":"billable" },
+				    { "title":"meta" }
+				]
+			} );   	
+}
+
+function destroyDatatable(){
+	if(devTable)
+	{
+		devTable.fnDestroy();
+	}
+}
+
+var devTable;
