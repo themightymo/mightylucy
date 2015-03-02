@@ -910,14 +910,19 @@ function register_cpt_bio() {
 /**
  * Bio Scripts
  */
-function bio_scripts() {
+function enqueue_my_scripts() {
    if(is_singular('bio')){ 
 		//wp_enqueue_style( 'style-bio', get_stylesheet_uri() );
 		wp_enqueue_script('script-bio','//code.jquery.com/ui/1.11.1/jquery-ui.js', array(), '1.0.0', true );
 	}
+	wp_enqueue_script(
+		'jquery-json-custom-script',
+		get_stylesheet_directory_uri() . '/js/ajax.js',
+		array( 'jquery' )
+	);
 }
 
-add_action( 'wp_enqueue_scripts', 'bio_scripts');
+add_action( 'wp_enqueue_scripts', 'enqueue_my_scripts');
 
 
 // Add WYSIWYG Comments - via https://www.gavick.com/blog/tinymce-editor-in-the-comments-section/

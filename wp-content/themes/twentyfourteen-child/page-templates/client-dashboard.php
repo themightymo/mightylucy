@@ -83,6 +83,18 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 				 echo $statusdiv;
 				}
 			?>
+			<article id="ajax-content">
+				<header class="entry-header">
+					<h1 class="entry-title">
+						asdfasdf
+					</h1>
+					<div class="entry-meta">
+					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+				<div class="entry-content">
+					asdfasdfasdfasdfasdfasdf  asdfasdf asdfasdf
+				</div>
+			</article>
 			<?php
 				// Start the Loop.
 				while ( have_posts() ) : the_post(); ?>
