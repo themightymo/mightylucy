@@ -64,7 +64,7 @@ function get_developers_hours(){
 			$singleUserStory[] = get_the_author();
 			$terms_post = array_values( get_the_terms (get_the_id(), 'time_entry_categories') );
 			$singleUserStory[] = $terms_post[0]->name;
-			$singleUserStory[] = get_the_ID();
+			$singleUserStory[] = '<a href="'. get_permalink() .'">'. get_the_title().'</a>';
 			$userStories[] = $singleUserStory;
 			
 			
