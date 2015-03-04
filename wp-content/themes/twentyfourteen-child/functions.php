@@ -740,19 +740,21 @@ function time_entry_updated( $post_id ) {
 
 	
 	global $wp_query;
-$args = array_merge( $wp_query->query_vars,array( 'post_type' => 'time_entry',
-		'posts_per_page' => '-1'  ) );
-query_posts( $args );	
+	$args = array_merge(
+		$wp_query->query_vars,
+		array(
+			'post_type' => 'time_entry',
+			'posts_per_page' => '-1'
+		)
+	);
+
+	query_posts( $args );	
 	while ( have_posts() ) : the_post();
-    $history_hours_content.='<li><a href="'. get_permalink() .'">'. get_the_title().':'.get_field('hours_invested').' hours</a></li>';
-	$totalhoursinvested += get_field('hours_invested'); 
+		$history_hours_content .= '<li><a href="'. get_permalink() . '">' . get_the_title() . ':' . get_field( 'hours_invested' ) . ' hours</a></li>' ;
+		$totalhoursinvested += get_field( 'hours_invested' ); 
 	endwhile;
 	
-	
-			
-
 	//total hours purchased
-
 
 	if( have_rows('prepaid_hours', 'options') ):
 		while ( have_rows('prepaid_hours', 'options') ) : the_row();	
@@ -901,8 +903,8 @@ function register_cpt_bio() {
         'rewrite' => true,
         'capability_type' => 'post'
     );
-
     register_post_type( 'bio', $args );
+
 }
 
 /**
@@ -926,3 +928,25 @@ function gk_comment_form( $fields ) {
     return $fields;
 }
 //add_filter( 'comment_form_defaults', 'gk_comment_form' );
+
+$dirName = dirname(__FILE__);
+$baseName = basename(realpath($dirName));
+
+require_once ("$dirName/ajax/developer-hours.php");
+
+function front_end_ajax_available() 
+{     
+	if ( is_page ( 'report-all-dev-hours' ) ) {
+		
+		wp_enqueue_script( 'dev_hours', get_template_directory_uri() . '-child/js/dev-hours.js', array(), '1.0.0', true );
+		wp_localize_script( 'dev_hours', 'front_end_ajax_identificator', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+	}
+}
+
+add_action('template_redirect', 'front_end_ajax_available');
+
+add_action("wp_ajax_get_developers_hours", "get_developers_hours");
+add_action("wp_ajax_nopriv_get_developers_hours", "get_developers_hours");
+
+
+add_action( 'wp_enqueue_scripts', 'dev_hours_scripts' );

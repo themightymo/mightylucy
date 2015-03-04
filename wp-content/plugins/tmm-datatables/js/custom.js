@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-
+	
     var table = $('#myTable').DataTable( {
     
     	//via http://www.datatables.net/examples/advanced_init/footer_callback.html

@@ -100,7 +100,6 @@ wp-content/plugins/wordpress-mu-sitewide-tags/
 wp-content/plugins/wp-require-login/
 wp-content/plugins/wp-user-avatar/
 wp-content/plugins/wpmudev-updates/
-wp-content/themes/twentyfourteen/
 wp-content/plugins/json-api/
 wp-content/plugins/wp-ajaxify-comments/
 wp-content/plugins/wp-migrate-db-pro/
@@ -109,7 +108,6 @@ wp-content/plugins/wp-migrate-db-pro/
 # local self-signed certificate for MAMP PRO
 mightylucy.dev.crt
 mightylucy.dev.key
-
 
 # wpengine specific
 .smushit-status
@@ -155,6 +153,10 @@ wp-content/mysql.sql
 /wp-content/themes/twentyten
 /wp-content/themes/index.php
 /wp-content/plugins/index.php
+/wp-content/themes/twentyfifteen
+
+# site environment variants
+.htaccess
 
 # large/disallowed file types
 # a CDN should be used for these
@@ -190,3 +192,6 @@ wp-content/mysql.sql
 *.asf
 *.wmv
 *.avi
+
+# database search-and-replace folder
+/snr

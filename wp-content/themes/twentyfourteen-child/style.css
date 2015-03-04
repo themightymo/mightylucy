@@ -111,3 +111,6 @@ li.redhr a{
 .wp-editor-container {
 	border:1px solid #ccc;
 }
+#date-ranges {
+	margin-bottom: 10px;
+}
