@@ -963,3 +963,31 @@ add_action('template_redirect', 'front_end_ajax_available');
 add_action("wp_ajax_get_developers_hours", "get_developers_hours");
 add_action("wp_ajax_nopriv_get_developers_hours", "get_developers_hours");
 
+
+add_action( 'wp_ajax_my_action', 'my_action_callback' );
+
+function my_action_callback() {
+	global $user_ID;
+//	global $wpdb; // this is how you get access to the database
+
+//	$whatever = intval( $_POST['whatever'] );
+
+//	$whatever += 10;
+
+//        echo $whatever;
+
+//	wp_die(); // this is required to terminate immediately and return a proper response
+
+	$new_post = array(
+	'post_title' => $_POST['title'],
+	'post_content' => 'Lorem ipsum dolor sit amet...',
+	'post_status' => 'publish',
+	'post_date' => date('Y-m-d H:i:s'),
+	'post_author' => $user_ID,
+	'post_type' => 'time_entry',
+	'post_category' => array(11)
+	);
+	
+	$post_id = wp_insert_post($new_post);
+
+}

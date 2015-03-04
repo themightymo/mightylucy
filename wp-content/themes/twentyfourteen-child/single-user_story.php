@@ -63,7 +63,24 @@ get_header(); ?>
 							)
 						)
 					));
-			
+						/*									*\
+							This will contain the Time entry 
+							from the Todo View  
+						\*									*/
+					
+						if ( ! is_admin() ) { ?>
+							<div class="SingleTimeEntryGroup">
+								Quick Time Entry: 
+								<input type="number" min=".25" max="16" step=".25" value=".25" class="SingleTimeEntryClass" id="SingleTimeEntryId">
+								<input type="button" id="SingleTimeEntryAddButton" value="Add Time">
+								<br>
+							</div>
+						<? 							
+						} 
+						
+						/*									*\
+							End feature 
+						\*									*/
 					?>
 					<?php if( $doctors ): ?>
 						<quote>
@@ -115,6 +132,17 @@ get_sidebar();
 		   $("#bottomselect").val(this_value);
         }); 
 	});
+	
+	$('#SingleTimeEntryAddButton').click(function(){
+		var data = {
+			'action': 'my_action',
+			'title': 'dummy_title_abel'
+		};
+		
+		$.post(ajaxurl, data, function(response) {
+			alert('Got this from the server: ' + response);
+		});
+	})
 	
 })( jQuery );
 </script>
