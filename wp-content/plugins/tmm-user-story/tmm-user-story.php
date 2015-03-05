@@ -81,7 +81,7 @@ class CPT_UserStories {
 					0 => 'category',
 				),
 				'show_ui' => true,
-				'menu_position' => 30,
+				'menu_position' => 5,
 				'menu_icon' => false,
 				'can_export' => true,
 				'show_in_nav_menus' => true,
