@@ -137,11 +137,12 @@ get_sidebar();
 	$('#SingleTimeEntryAddButton').click(function(){
 		var data = {
 			'action': 'my_action_add_time_from_frontend',
-			'title': '<?php echo the_title() ?>'
+			'title': '<?php echo the_title() ?>',
+			'description': $( '#SingleTimeEntryDescription' ).val(),
 		};
 		
 		$.post(ajaxurl, data, function(response) {
-			alert('Got this from the server: ' + response);
+			alert( 'Recorded New Time Entry.' );
 		});
 	})
 	
