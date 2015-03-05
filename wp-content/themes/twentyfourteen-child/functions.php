@@ -998,3 +998,13 @@ function my_action_add_time_from_frontend_callback() {
 
 }
 
+function DisplayTimeEntryCategories() {	
+	$args = array(
+	  'taxonomy'     => 'time_entry_categories',
+	  'orderby'      => 'name',
+	  'id'           => 'TimeEntryCategories'
+	);
+	return wp_dropdown_categories( $args ); 
+}
+
+

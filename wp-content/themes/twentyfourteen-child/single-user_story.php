@@ -72,6 +72,7 @@ get_header(); ?>
 							<div class="SingleTimeEntryGroup">
 								Quick Time Entry: 
 								<input type="number" min=".25" max="16" step=".25" value=".25" class="SingleTimeEntryClass" id="SingleTimeEntryId">
+								<?php DisplayTimeEntryCategories(); ?>	
 								​<textarea id="SingleTimeEntryDescription" rows="3" cols="30" placeholder="Enter Description Here"></textarea>
 								<input type="button" id="SingleTimeEntryAddButton" value="Add Time">
 								<br>
