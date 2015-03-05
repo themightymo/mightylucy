@@ -43,8 +43,11 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 						<div id="date-ranges">
 							<input type="date" id="rangeFrom" value="<?php echo date('Y-m-d'); ?>"/> <i>to</i> <input type="date" id="rangeTo" value="<?php echo date('Y-m-d'); ?>" />
 						</div>
+
 							
-							<table id="dev_hours" ><thead>
+							<table id="dev_hours" >
+                            	<thead>
+
 									<tr>
 									   <th>Sitename</th>
 									   <th>Hours Invested</th>
@@ -54,6 +57,16 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 									   <th>Post Meta</th>
 									</tr>
 								</thead>
+                                <tfoot>
+									<tr>
+									   <th>Sitename</th>
+									   <th>Hours Invested</th>
+									   <th>Date Worked</th>
+									   <th>Developer</th>
+									   <th>Billable?</th>
+									   <th>Post Meta</th>
+									</tr>
+								</tfoot>
                                 <tbody></tbody>
                                 
                             </table>

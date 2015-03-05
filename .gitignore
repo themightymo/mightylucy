@@ -155,6 +155,7 @@ wp-content/mysql.sql
 /wp-content/plugins/index.php
 /wp-content/themes/twentyfifteen
 
+
 # site environment variants
 .htaccess
 
