@@ -979,8 +979,11 @@ function my_action_add_time_from_frontend_callback() {
 //	wp_die(); // this is required to terminate immediately and return a proper response
 
 	$new_post = array(
+<<<<<<< HEAD
 	'post_title' => $_POST['title'],
 	'post_content' => $_POST['time_entry_description'],
+	'post_title' => $_POST[ 'title' ],
+	'post_content' => $_POST[ 'description' ],
 	'post_status' => 'publish',
 	'post_date' => date('Y-m-d H:i:s'),
 	'post_author' => $user_ID,

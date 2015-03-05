@@ -143,7 +143,7 @@ get_sidebar();
 		};
 		
 		$.post(ajaxurl, data, function(response) {
-			alert('Got this from the server: ' + response);
+			alert( 'Recorded New Time Entry.' );
 		});
 	})
 	
