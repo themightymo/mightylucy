@@ -964,9 +964,9 @@ add_action("wp_ajax_get_developers_hours", "get_developers_hours");
 add_action("wp_ajax_nopriv_get_developers_hours", "get_developers_hours");
 
 
-add_action( 'wp_ajax_my_action', 'my_action_callback' );
+add_action( 'wp_ajax_my_action_add_time_from_frontend', 'my_action_add_time_from_frontend_callback' );
 
-function my_action_callback() {
+function my_action_add_time_from_frontend_callback() {
 	global $user_ID;
 //	global $wpdb; // this is how you get access to the database
 

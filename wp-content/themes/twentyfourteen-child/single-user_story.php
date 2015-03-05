@@ -72,6 +72,7 @@ get_header(); ?>
 							<div class="SingleTimeEntryGroup">
 								Quick Time Entry: 
 								<input type="number" min=".25" max="16" step=".25" value=".25" class="SingleTimeEntryClass" id="SingleTimeEntryId">
+								​<textarea id="SingleTimeEntryDescription" rows="3" cols="30" placeholder="Enter Description Here"></textarea>
 								<input type="button" id="SingleTimeEntryAddButton" value="Add Time">
 								<br>
 							</div>
@@ -135,8 +136,8 @@ get_sidebar();
 	
 	$('#SingleTimeEntryAddButton').click(function(){
 		var data = {
-			'action': 'my_action',
-			'title': 'dummy_title_abel'
+			'action': 'my_action_add_time_from_frontend',
+			'title': '<?php echo the_title() ?>'
 		};
 		
 		$.post(ajaxurl, data, function(response) {
