@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: TheMightyMo User Stories
-Plugin URI: http://www.themightymo.com
-Description: This is a plugin that works with user stories for MightyLucy project management.
+Plugin Name: TMM Create user_story Post Type
+Plugin URI: https://www.themightymo.com
+Description: Creates the user_story custom post type. Compatible with the core MightyLucy plugin.
 Version: 1.0
-Author: Sherwin Calimpong - TheMightyMo
-Author URI: http://www.themightymo.com
+Author: Sherwin Calimpong - The Mighty Mo! Design Co.
+Author URI: https://www.themightymo.com
 
 ------------------------------------------------------------
 Copyright 2015
@@ -38,7 +38,7 @@ class CPT_UserStories {
 	}
 
 	function register_cpt_user_stories() {
-		register_post_type( "user_stories", array (
+		register_post_type( "user_story", array (
 				'labels' =>
 				array (
 					'name' => 'User Stories',
@@ -115,13 +115,6 @@ class CPT_UserStories {
 							'type' => 'select',
 							'required' => 1,
 							'choices' => array (
-								/*'0-1' => '1',
-					'1-2' => '2',
-					'2-4' => '4',
-					'4-8' => '8',
-					'8-16' => '16',
-					'16-32' => '32',
-					'32-48' => '48',*/
 								'Not Estimated' => 'Not Estimated',
 								'1' => '0-1 hours',
 								'2' => '1-2 hours',
@@ -199,7 +192,7 @@ class CPT_UserStories {
 							array (
 								'param' => 'post_type',
 								'operator' => '==',
-								'value' => 'user_stories',
+								'value' => 'user_story',
 								'order_no' => 0,
 								'group_no' => 0,
 							),
@@ -215,7 +208,6 @@ class CPT_UserStories {
 				));
 		}
 	}
-
 
 }
 
