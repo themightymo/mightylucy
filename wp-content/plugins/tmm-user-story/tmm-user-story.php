@@ -35,6 +35,7 @@ class CPT_UserStories {
 	public function __construct() {
 		add_action( 'init', array($this, 'register_cpt_user_stories') );
 		add_action( 'init', array($this, 'register_user_story_field_group') );
+		add_filter('template_include', array($this,'set_single_user_story_template'));
 	}
 
 	function register_cpt_user_stories() {
@@ -207,6 +208,13 @@ class CPT_UserStories {
 					'menu_order' => 0,
 				));
 		}
+	}
+
+	function set_single_user_story_template($template){
+		if( is_singular('user_story')){
+			$template=dirname(__FILE__).'/templates/single-user_story.php';
+		}
+		return $template;
 	}
 
 }
