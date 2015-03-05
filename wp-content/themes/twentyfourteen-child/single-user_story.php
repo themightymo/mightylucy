@@ -138,12 +138,14 @@ get_sidebar();
 	$('#SingleTimeEntryAddButton').click(function(){
 		var TimeEntryDescription = $( "textarea#SingleTimeEntryDescription" ).val();
 		var TimeEntryHours = $( "#SingleTimeEntryId" ).val();
+		var TimeEntryCategories = $( "#TimeEntryCategories" ).val();
 		var data = {
 			'action': 'my_action_add_time_from_frontend',
 			'title': '<?php echo the_title() ?>',
 			'time_entry_description': TimeEntryDescription,
 			'related_postid': '<?php the_ID(); ?>',
-			'TimeEntryHours': TimeEntryHours			
+			'TimeEntryHours': TimeEntryHours,
+			'TimeEntryCategories': TimeEntryCategories			
 		};
 		
 		$.post(ajaxurl, data, function(response) {
