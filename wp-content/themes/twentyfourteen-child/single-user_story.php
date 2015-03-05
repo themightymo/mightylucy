@@ -139,18 +139,18 @@ get_sidebar();
 		var TimeEntryDescription = $( "textarea#SingleTimeEntryDescription" ).val();
 		var TimeEntryHours = $( "#SingleTimeEntryId" ).val();
 		var TimeEntryCategories = $( "#TimeEntryCategories" ).val();
-		var PostIDofThisTask = '<?php echo the_ID(); ?>';
+		var RelatedPostId = '<?php echo the_ID(); ?>';
 		var data = {
 			'action': 'my_action_add_time_from_frontend',
 			'title': '<?php echo the_title() ?>',
 			'time_entry_description': TimeEntryDescription,
-			'related_postid': PostIDofThisTask,
-			'TimeEntryHours': TimeEntryHours,
-			'TimeEntryCategories': TimeEntryCategories			
+			'related_post_id': RelatedPostId,
+			'time_entry_hours': TimeEntryHours,
+			'time_entry_categories': TimeEntryCategories			
 		};
 		
 		$.post(ajaxurl, data, function(response) {
-			alert( PostIDofThisTask );
+			alert( 'New Time Entry was recorded.' );
 		});
 	})
 	

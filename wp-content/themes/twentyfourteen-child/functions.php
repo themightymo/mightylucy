@@ -992,12 +992,12 @@ function my_action_add_time_from_frontend_callback() {
 	$post_id = wp_insert_post($new_post);
 	
 	//this updates the acf for the Time Entry
-	$time_value = $_POST['TimeEntryHours'];
+	$time_value = $_POST['time_entry_hours'];
 	$field_key_hours = 'field_53548c4ef8774';
 	update_field( $field_key_hours, $time_value, $post_id );
 	
 	//this updates the acf for the Time Entry Categories
-	$category_value = $_POST['TimeEntryCategories'];
+	$category_value = $_POST['time_entry_categories'];
 	$field_key_category = 'field_53d96941d7228';
 	update_field( $field_key_category, $category_value, $post_id );	
 	
@@ -1005,11 +1005,11 @@ function my_action_add_time_from_frontend_callback() {
 	$Date_worked_value = date('Ymd');
 	$field_key_Date_worked = 'field_5335d9dc72314';
 	update_field( $field_key_Date_worked, $Date_worked_value, $post_id );	
-	
+		
 	//this updates the acf for the Related user Stories
-	$Related_US_value = $_POST['PostIDofThisTask'];
+	$Related_US_value = ''.$_POST['related_post_id'].'';
 	$field_key_Related_US = 'field_53549855f0f97';
-	update_field( $field_key_Related_US, $Related_US_value, $post_id );	
+	update_field( $field_key_Related_US, $Related_US_value, $post_id );
 
 }
 
