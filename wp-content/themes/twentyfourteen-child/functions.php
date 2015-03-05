@@ -1007,7 +1007,7 @@ function my_action_add_time_from_frontend_callback() {
 	update_field( $field_key_Date_worked, $Date_worked_value, $post_id );	
 	
 	//this updates the acf for the Related user Stories
-	$Related_US_value = $_POST['TimeEntryCategories'];
+	$Related_US_value = $_POST['PostIDofThisTask'];
 	$field_key_Related_US = 'field_53549855f0f97';
 	update_field( $field_key_Related_US, $Related_US_value, $post_id );	
 
