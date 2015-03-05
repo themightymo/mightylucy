@@ -88,3 +88,14 @@ function tmm_comment_multiple_images_show_attached_images($text, $comment){
 	
 	return implode(' <br /><br /> ', $arrayImages) . ' <br /> ' . $text;
 }
+
+function tmm_comment_multiple_images_scripts() {
+	wp_enqueue_script(
+		'newscript',
+		plugins_url( '/js/tmm_comment_multiple_images.js' , __FILE__ ),
+		array( 'jquery' )
+	);
+	
+}
+
+add_action( 'wp_enqueue_scripts', 'tmm_comment_multiple_images_scripts' );
