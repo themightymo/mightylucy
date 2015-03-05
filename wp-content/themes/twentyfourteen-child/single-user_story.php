@@ -135,9 +135,11 @@ get_sidebar();
 	});
 	
 	$('#SingleTimeEntryAddButton').click(function(){
+		var TimeEntryDescription = $( "textarea#SingleTimeEntryDescription" ).val();
 		var data = {
 			'action': 'my_action_add_time_from_frontend',
-			'title': '<?php echo the_title() ?>'
+			'title': '<?php echo the_title() ?>',
+			'time_entry_description': TimeEntryDescription
 		};
 		
 		$.post(ajaxurl, data, function(response) {
