@@ -17,8 +17,16 @@
  * @since Twenty Fourteen 1.0
  */
 
-get_header(); ?>
+get_header();
 
+if( get_post_type() == 'time_entry' ) { ?>
+	<section id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">	
+			<h1 class="page-title">REPORT: DEVELOPER HOURS WORKED</h1>
+		</div>
+	</section>	
+	<?php
+} else { ?> 	
 	<section id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 
@@ -78,7 +86,8 @@ get_header(); ?>
 			?>
 		</div><!-- #content -->
 	</section><!-- #primary -->
-
+	<?php
+} ?>
 <?php
 get_sidebar( 'content' );
 get_sidebar();
