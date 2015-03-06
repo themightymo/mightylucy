@@ -84,7 +84,9 @@ get_header(); ?>
 						/*									*\
 							End feature 
 						\*									*/
+
 					?>
+					
 					<?php if( $doctors ): ?>
 						<quote>
 							Time Entries for This To-Do:

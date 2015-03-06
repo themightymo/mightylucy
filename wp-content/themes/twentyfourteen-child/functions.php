@@ -958,11 +958,11 @@ function front_end_ajax_available()
 }
 
 
+
 add_action('template_redirect', 'front_end_ajax_available');
 
 add_action("wp_ajax_get_developers_hours", "get_developers_hours");
 add_action("wp_ajax_nopriv_get_developers_hours", "get_developers_hours");
-
 
 add_action( 'wp_ajax_my_action_add_time_from_frontend', 'my_action_add_time_from_frontend_callback' );
 
@@ -1049,4 +1049,23 @@ function DisplayTimeEntryCategories() {
 	);
 	return wp_dropdown_categories( $args ); 
 }
+add_action( 'wp_enqueue_scripts', 'dev_hours_scripts' );
+
+
+function mfields_set_default_object_terms( $post_id, $post ) {
+    if ( 'publish' === $post->post_status ) {
+        $defaults = array(
+            
+            'user_story_done_or_not' => array( 'active' ),
+            );
+        $taxonomies = get_object_taxonomies( $post->post_type );
+        foreach ( (array) $taxonomies as $taxonomy ) {
+            $terms = wp_get_post_terms( $post_id, $taxonomy );
+            if ( empty( $terms ) && array_key_exists( $taxonomy, $defaults ) ) {
+                wp_set_object_terms( $post_id, $defaults[$taxonomy], $taxonomy );
+            }
+        }
+    }
+}
+add_action( 'save_post', 'mfields_set_default_object_terms', 100, 2 );
 
