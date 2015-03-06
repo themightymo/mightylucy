@@ -47,7 +47,6 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							
 							<table id="dev_hours" >
                             	<thead>
-
 									<tr>
 									   <th>Sitename</th>
 									   <th>Hours Invested</th>
