@@ -93,7 +93,7 @@ get_header(); ?>
 								<?php $photo = get_field( 'hours_invested', $doctor->ID ); ?>
 								<li>
 									<a href="<?php echo get_permalink( $doctor->ID ); ?>">
-										<?php echo get_the_title( $doctor->ID ); ?> (<?php echo $photo; ?> hours on <?php echo date( "F d Y", strtotime( $doctor->post_date ) ); ?>)
+										<?php echo get_the_title( $doctor->ID ); ?> (<?php echo $photo; ?> hours on <?php echo date( "F d Y", strtotime( $doctor->post_date ) ); ?> by: <?php echo get_the_author_meta( 'user_nicename', $doctor->post_author ); ?>)
 										<?php $totalHoursWorked += $photo; ?>
 									</a>
 								</li>
