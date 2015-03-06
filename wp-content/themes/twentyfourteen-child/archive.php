@@ -22,7 +22,39 @@ get_header();
 if( get_post_type() == 'time_entry' ) { ?>
 	<section id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">	
-			<h1 class="page-title">REPORT: DEVELOPER HOURS WORKED</h1>
+			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<?php twentyfourteen_post_thumbnail(); ?>					
+				<header class="entry-header">							
+					<div class="entry-meta">
+					</div>
+						<h1 class="entry-title">REPORT: History of Developer Hours Worked</h1>
+					<div class="entry-meta">
+					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->					
+				<div class="entry-content">
+					<table id="dev_hours" >
+                    	<thead>
+							<tr>
+							   <th>Task</th>
+							   <th>Hours Invested</th>
+							   <th>Date Worked</th>
+							   <th>Developer</th>
+							   <th>Billable?</th>
+							</tr>
+						</thead>
+                        <tfoot>
+							<tr>
+							   <th>Task</th>
+							   <th>Hours Invested</th>
+							   <th>Date Worked</th>
+							   <th>Developer</th>
+							   <th>Billable?</th>
+							</tr>
+						</tfoot>
+                        <tbody></tbody>
+                    </table>
+				</div><!-- .entry-content -->						
+			</article><!-- #post-## -->
 		</div>
 	</section>	
 	<?php
