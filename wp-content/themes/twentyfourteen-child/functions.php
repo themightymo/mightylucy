@@ -978,6 +978,9 @@ function my_action_add_time_from_frontend_callback() {
 
 //	wp_die(); // this is required to terminate immediately and return a proper response
 
+	// set the local timezone to CST
+	date_default_timezone_set( 'America/Chicago' );
+	
 	$new_post = array(
 	'post_title' => $_POST['title'],
 	'post_content' => $_POST['time_entry_description'],
@@ -1007,10 +1010,35 @@ function my_action_add_time_from_frontend_callback() {
 	update_field( $field_key_Date_worked, $Date_worked_value, $post_id );	
 		
 	//this updates the acf for the Related user Stories
-	$Related_US_value = ''.$_POST['related_post_id'].'';
+	$Related_US_value = $_POST['related_post_id'];
 	$field_key_Related_US = 'field_53549855f0f97';
 	update_field( $field_key_Related_US, $Related_US_value, $post_id );
+	
+	//return data for updating the time entry list
+	$new_time_entry = get_post( $post_id );
 
+	//repaint the 
+	$doctors = get_posts(array(
+		'posts_per_page' => -1,
+		'post_type' => 'time_entry',
+		'meta_query' => array(
+			array(
+				'key' => 'related_user_stories', // name of custom field
+				'value' => '"' . $_POST['related_post_id'] . '"', // matches exaclty "123", not just 123. This prevents a match for "1234"
+				'compare' => 'LIKE'
+			)
+		)
+	));
+	$return_value = array();
+	if( $doctors ) {
+		foreach( $doctors as $doctor ) {
+			$photo = get_field( 'hours_invested', $doctor->ID );
+			$return_value[]=array( get_permalink( $doctor->ID ), get_the_title( $doctor->ID ) . " ($photo hours on " . date( "F d Y", strtotime( $doctor->post_date ) ) .")",  "$photo");
+		}
+
+//			<li>Total hours invested on this to-do: $totalHoursWorked;</li>
+		wp_send_json( $return_value );	
+	} //end if
 }
 
 function DisplayTimeEntryCategories() {	
@@ -1021,5 +1049,4 @@ function DisplayTimeEntryCategories() {
 	);
 	return wp_dropdown_categories( $args ); 
 }
-
 

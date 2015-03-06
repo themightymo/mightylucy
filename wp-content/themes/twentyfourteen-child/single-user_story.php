@@ -54,6 +54,7 @@ get_header(); ?>
 					*/
 			
 					$doctors = get_posts(array(
+						'posts_per_page' => -1,
 						'post_type' => 'time_entry',
 						'meta_query' => array(
 							array(
@@ -87,7 +88,7 @@ get_header(); ?>
 					<?php if( $doctors ): ?>
 						<quote>
 							Time Entries for This To-Do:
-							<ul>
+							<ul id="timeEntries">
 							<?php foreach( $doctors as $doctor ) : ?>
 								<?php $photo = get_field( 'hours_invested', $doctor->ID ); ?>
 								<li>
@@ -135,7 +136,7 @@ get_sidebar();
         }); 
 	});
 	
-	$('#SingleTimeEntryAddButton').click(function(){
+	$('#SingleTimeEntryAddButton').click(function() {
 		var TimeEntryDescription = $( "textarea#SingleTimeEntryDescription" ).val();
 		var TimeEntryHours = $( "#SingleTimeEntryId" ).val();
 		var TimeEntryCategories = $( "#TimeEntryCategories" ).val();
@@ -148,10 +149,26 @@ get_sidebar();
 			'time_entry_hours': TimeEntryHours,
 			'time_entry_categories': TimeEntryCategories			
 		};
-		
-		$.post(ajaxurl, data, function(response) {
-			alert( 'New Time Entry was recorded.' );
-		});
+		$('body,a,input,textarea,select').css('cursor','wait');
+		$.post(ajaxurl, data, function( data ) {
+			$('#timeEntries').html('');
+			var total = 0;
+			for(i=0;i<data.length;i++)
+				{
+				$('#timeEntries').append('<li><a href="'+data[i][0]+'">'+data[i][1]+'</a></li>');
+				total = total + parseFloat( data[i][2] );
+				}
+			$('#timeEntries').append('<li>Total hours invested on this to-do: '+total+'</li>');
+			$('#timeEntries>li:first-child').css('background-color','#c0c000');
+			$('#SingleTimeEntryId').val('.25');
+			$('#SingleTimeEntryDescription').val('');
+			$('#TimeEntryCategories>option[value=11]').attr('selected',true);
+			$('body,a,input,textarea,select').css('cursor','auto');
+			$( "#timeEntries>li:first-child" ).animate({
+				backgroundColor: 'transparent',
+    			}, 2000 );
+		},
+		"json");
 	})
 	
 })( jQuery );
