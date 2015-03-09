@@ -4,7 +4,7 @@
  * @version 0.0.1
  */
 /*
-Plugin Name: TMM Edit Title
+Plugin Name: TMM Front End Edit Post and Page Titles
 Description: Makes single post and page titles editable in place for logged in administrators.
 Author: Erik Mattheis and Toby Cryns
 Version: 0.0.1
