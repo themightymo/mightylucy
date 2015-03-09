@@ -54,6 +54,7 @@ get_header(); ?>
 					*/
 			
 					$doctors = get_posts(array(
+						'posts_per_page' => -1,
 						'post_type' => 'time_entry',
 						'meta_query' => array(
 							array(
@@ -63,17 +64,38 @@ get_header(); ?>
 							)
 						)
 					));
-			
+						/*									*\
+							This will contain the Time entry 
+							from the Todo View  
+						\*									*/
+					
+						if ( ! is_admin() ) { ?>
+							<div class="SingleTimeEntryGroup">
+								Quick Time Entry: 
+								<input type="number" min=".25" max="16" step=".25" value=".25" class="SingleTimeEntryClass" id="SingleTimeEntryId">
+								<?php DisplayTimeEntryCategories(); ?>	
+								​<textarea id="SingleTimeEntryDescription" rows="3" cols="30" placeholder="Enter Description Here"></textarea>
+								<input type="button" id="SingleTimeEntryAddButton" value="Add Time">
+								<br>
+							</div>
+						<? 							
+						} 
+						
+						/*									*\
+							End feature 
+						\*									*/
+
 					?>
+					
 					<?php if( $doctors ): ?>
 						<quote>
 							Time Entries for This To-Do:
-							<ul>
+							<ul id="timeEntries">
 							<?php foreach( $doctors as $doctor ) : ?>
 								<?php $photo = get_field( 'hours_invested', $doctor->ID ); ?>
 								<li>
 									<a href="<?php echo get_permalink( $doctor->ID ); ?>">
-										<?php echo get_the_title( $doctor->ID ); ?> (<?php echo $photo; ?> hours on <?php echo date( "F d Y", strtotime( $doctor->post_date ) ); ?>)
+										<?php echo get_the_title( $doctor->ID ); ?> (<?php echo $photo; ?> hours on <?php echo date( "F d Y", strtotime( $doctor->post_date ) ); ?> by: <?php echo get_the_author_meta( 'user_nicename', $doctor->post_author ); ?>)
 										<?php $totalHoursWorked += $photo; ?>
 									</a>
 								</li>
@@ -115,6 +137,41 @@ get_sidebar();
 		   $("#bottomselect").val(this_value);
         }); 
 	});
+	
+	$('#SingleTimeEntryAddButton').click(function() {
+		var TimeEntryDescription = $( "textarea#SingleTimeEntryDescription" ).val();
+		var TimeEntryHours = $( "#SingleTimeEntryId" ).val();
+		var TimeEntryCategories = $( "#TimeEntryCategories" ).val();
+		var RelatedPostId = '<?php echo the_ID(); ?>';
+		var data = {
+			'action': 'my_action_add_time_from_frontend',
+			'title': '<?php echo the_title() ?>',
+			'time_entry_description': TimeEntryDescription,
+			'related_post_id': RelatedPostId,
+			'time_entry_hours': TimeEntryHours,
+			'time_entry_categories': TimeEntryCategories			
+		};
+		$('body,a,input,textarea,select').css('cursor','wait');
+		$.post(ajaxurl, data, function( data ) {
+			$('#timeEntries').html('');
+			var total = 0;
+			for(i=0;i<data.length;i++)
+				{
+				$('#timeEntries').append('<li><a href="'+data[i][0]+'">'+data[i][1]+'</a></li>');
+				total = total + parseFloat( data[i][2] );
+				}
+			$('#timeEntries').append('<li>Total hours invested on this to-do: '+total+'</li>');
+			$('#timeEntries>li:first-child').css('background-color','#c0c000');
+			$('#SingleTimeEntryId').val('.25');
+			$('#SingleTimeEntryDescription').val('');
+			$('#TimeEntryCategories>option[value=11]').attr('selected',true);
+			$('body,a,input,textarea,select').css('cursor','auto');
+			$( "#timeEntries>li:first-child" ).animate({
+				backgroundColor: 'transparent',
+    			}, 2000 );
+		},
+		"json");
+	})
 	
 })( jQuery );
 </script>

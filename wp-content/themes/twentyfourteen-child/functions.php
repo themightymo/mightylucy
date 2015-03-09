@@ -1,4 +1,7 @@
 <?php
+
+
+
 if(function_exists("register_field_group"))
 {
 	
@@ -954,10 +957,115 @@ function front_end_ajax_available()
 	}
 }
 
+
+
 add_action('template_redirect', 'front_end_ajax_available');
 
 add_action("wp_ajax_get_developers_hours", "get_developers_hours");
 add_action("wp_ajax_nopriv_get_developers_hours", "get_developers_hours");
 
+add_action( 'wp_ajax_my_action_add_time_from_frontend', 'my_action_add_time_from_frontend_callback' );
 
+function my_action_add_time_from_frontend_callback() {
+	global $user_ID;
+//	global $wpdb; // this is how you get access to the database
+
+//	$whatever = intval( $_POST['whatever'] );
+
+//	$whatever += 10;
+
+//        echo $whatever;
+
+//	wp_die(); // this is required to terminate immediately and return a proper response
+
+	// set the local timezone to CST
+	date_default_timezone_set( 'America/Chicago' );
+	
+	$new_post = array(
+	'post_title' => $_POST['title'],
+	'post_content' => $_POST['time_entry_description'],
+	'post_title' => $_POST[ 'title' ],
+	'post_status' => 'publish',
+	'post_date' => date('Y-m-d H:i:s'),
+	'post_author' => $user_ID,
+	'post_type' => 'time_entry',
+	'post_category' => array(11)
+	);
+	
+	$post_id = wp_insert_post($new_post);
+	
+	//this updates the acf for the Time Entry
+	$time_value = $_POST['time_entry_hours'];
+	$field_key_hours = 'field_53548c4ef8774';
+	update_field( $field_key_hours, $time_value, $post_id );
+	
+	//this updates the acf for the Time Entry Categories
+	$category_value = $_POST['time_entry_categories'];
+	$field_key_category = 'field_53d96941d7228';
+	update_field( $field_key_category, $category_value, $post_id );	
+	
+	//this updates the acf for the Date Worked
+	$Date_worked_value = date('Ymd');
+	$field_key_Date_worked = 'field_5335d9dc72314';
+	update_field( $field_key_Date_worked, $Date_worked_value, $post_id );	
+		
+	//this updates the acf for the Related user Stories
+	$Related_US_value = $_POST['related_post_id'];
+	$field_key_Related_US = 'field_53549855f0f97';
+	update_field( $field_key_Related_US, $Related_US_value, $post_id );
+	
+	//return data for updating the time entry list
+	$new_time_entry = get_post( $post_id );
+
+	//repaint the 
+	$doctors = get_posts(array(
+		'posts_per_page' => -1,
+		'post_type' => 'time_entry',
+		'meta_query' => array(
+			array(
+				'key' => 'related_user_stories', // name of custom field
+				'value' => '"' . $_POST['related_post_id'] . '"', // matches exaclty "123", not just 123. This prevents a match for "1234"
+				'compare' => 'LIKE'
+			)
+		)
+	));
+	$return_value = array();
+	if( $doctors ) {
+		foreach( $doctors as $doctor ) {
+			$photo = get_field( 'hours_invested', $doctor->ID );
+			$return_value[]=array( get_permalink( $doctor->ID ), get_the_title( $doctor->ID ) . " ($photo hours on " . date( "F d Y", strtotime( $doctor->post_date ) ) .")",  "$photo");
+		}
+
+//			<li>Total hours invested on this to-do: $totalHoursWorked;</li>
+		wp_send_json( $return_value );	
+	} //end if
+}
+
+function DisplayTimeEntryCategories() {	
+	$args = array(
+	  'taxonomy'     => 'time_entry_categories',
+	  'orderby'      => 'name',
+	  'id'           => 'TimeEntryCategories'
+	);
+	return wp_dropdown_categories( $args ); 
+}
 add_action( 'wp_enqueue_scripts', 'dev_hours_scripts' );
+
+
+function mfields_set_default_object_terms( $post_id, $post ) {
+    if ( 'publish' === $post->post_status ) {
+        $defaults = array(
+            
+            'user_story_done_or_not' => array( 'active' ),
+            );
+        $taxonomies = get_object_taxonomies( $post->post_type );
+        foreach ( (array) $taxonomies as $taxonomy ) {
+            $terms = wp_get_post_terms( $post_id, $taxonomy );
+            if ( empty( $terms ) && array_key_exists( $taxonomy, $defaults ) ) {
+                wp_set_object_terms( $post_id, $defaults[$taxonomy], $taxonomy );
+            }
+        }
+    }
+}
+add_action( 'save_post', 'mfields_set_default_object_terms', 100, 2 );
+
