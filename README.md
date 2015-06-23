@@ -1,51 +1,51 @@
 # README #
 This repository includes all custom code used on mightylucy.com.
 
-## RECOMMENDED PLUGINS ##
-1	Admin Menu Editor
-2	Advanced Custom Fields
-3	Advanced Custom Fields: Flexible Content Field
-4	Advanced Custom Fields: Gallery Field
-5	Advanced Custom Fields: Gravity Forms Field
-6	Advanced Custom Fields: Options Page
-7	Advanced Custom Fields: Repeater Field
-8	Avatars For Multisite
-9	Comment Attachment
-10	Comment Indexer
-11	Comment Notifications by The Mighty Mo! Design Co.
-12	Dashboard Customizations by The Mighty Mo! Design Co.
-13	Display Posts By Recency by The Mighty Mo! Design Co.
-14	Duplicate Post
-15	Gravity Forms
-16	Gravity Forms + Custom Post Types
-17	HTML Email Templates
-18	Hide Admin Bar From Non-admins EDITED BY TOBY
-19	HipChat
-20	Intuitive Custom Post Order
-21	Live Edit
-22	Maintenance Mode by The Mighty Mo! Design Co.
-23	Multi-Site Site List Shortcode
-24	Multisite Admin Bar Tweaks
-25	Network Privacy
-26	Network Terminator
-27	New Blog Templates
-28	Peter's Login Redirect
-29	Plugin Activation Status
-30	Post Indexer
-31	Private Only
-32	Private Only, Disable Feed
-33	Recent Global Comments Widget
-34	Recent Global Posts Widget
-35	Responsive Lightbox
-36	The Mighty Mo! Clients Helper Plugin
-37	The Mighty Mo! Datatables jQuery Loader
-38	Ultimate Branding
-39	User Activity
-40	User Switching
-41	WP Migrate DB Pro
-42	WPMU DEV Dashboard
-43	What Template File Am I Viewing?
-44	WordPress Importer
+## RECOMMENDED NETWORK-ACTIVATED PLUGINS ##
+1.	Admin Menu Editor
+2.	Advanced Custom Fields
+3.	Advanced Custom Fields: Flexible Content Field
+4.	Advanced Custom Fields: Gallery Field
+5.	Advanced Custom Fields: Gravity Forms Field
+6.	Advanced Custom Fields: Options Page
+7.	Advanced Custom Fields: Repeater Field
+8.	Avatars For Multisite
+9.	Comment Attachment
+10.	Comment Indexer
+11.	Comment Notifications by The Mighty Mo! Design Co.
+12.	Dashboard Customizations by The Mighty Mo! Design Co.
+13.	Display Posts By Recency by The Mighty Mo! Design Co.
+14.	Duplicate Post
+15.	Gravity Forms
+16.	Gravity Forms + Custom Post Types
+17.	HTML Email Templates
+18.	Hide Admin Bar From Non-admins EDITED BY TOBY
+19.	HipChat
+20.	Intuitive Custom Post Order
+21.	Live Edit
+22.	Maintenance Mode by The Mighty Mo! Design Co.
+23.	Multi-Site Site List Shortcode
+24.	Multisite Admin Bar Tweaks
+25.	Network Privacy
+26.	Network Terminator
+27.	New Blog Templates
+28.	Peter's Login Redirect
+29.	Plugin Activation Status
+30.	Post Indexer
+31.	Private Only
+32.	Private Only, Disable Feed
+33.	Recent Global Comments Widget
+34.	Recent Global Posts Widget
+35.	Responsive Lightbox
+36.	The Mighty Mo! Clients Helper Plugin
+37.	The Mighty Mo! Datatables jQuery Loader
+38.	Ultimate Branding
+39.	User Activity
+40.	User Switching
+41.	WP Migrate DB Pro
+42.	WPMU DEV Dashboard
+43.	What Template File Am I Viewing?
+44.	WordPress Importer
 List generated on June 23, 2015 at 12:56 am	
 
 ## LOCALHOST NOTES ##
