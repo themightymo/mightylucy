@@ -1,6 +1,14 @@
 # README #
 This repository includes all custom code used on mightylucy.com.
 
+## INSTALLATION STEPS ##
+1. Upload the MightyLucy plugins and themes located in this git repo.
+2. Install and network-active all of the plugins below (including the ones in this git repo).
+3. Activate the twentyfourteen-child theme.
+
+## ADDITIONAL RECOMMENDED STEPS ##
+1. Create a Gravity Form for the front end so customers can create to-dos.  The xml file can be found here.
+
 ## RECOMMENDED NETWORK-ACTIVATED PLUGINS ##
 1.	Admin Menu Editor
 2.	Advanced Custom Fields
