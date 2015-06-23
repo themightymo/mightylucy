@@ -1,5 +1,10 @@
 # README #
+
+MightyLucy is a WordPress project management plugin: think Basecamp + Pivotal Tracker + Harvest + etc.
+
 This repository includes all custom code used on mightylucy.com.
+
+Check out this 1-minute video showing you how it all works in the end: http://www.screencast.com/users/themightymo/folders/Jing/media/7108dfa3-66bc-47af-936e-5e9cbd5f06a4
 
 ## INSTALLATION STEPS ##
 1. Upload the MightyLucy plugins and themes located in this git repo.
@@ -7,7 +12,7 @@ This repository includes all custom code used on mightylucy.com.
 3. Activate the twentyfourteen-child theme.
 
 ## ADDITIONAL RECOMMENDED STEPS ##
-1. Create a Gravity Form for the front end so customers can create to-dos.  The xml file can be found here.
+1. Create a Gravity Form for the front end so customers can create to-dos.  In Gravity Forms, import the "gravityforms-export.json" file found in the root of this git repo.
 
 ## RECOMMENDED NETWORK-ACTIVATED PLUGINS ##
 1.	Admin Menu Editor
@@ -64,9 +69,4 @@ List generated on June 23, 2015 at 12:56 am
 2. Updated UI
 3. Integrations with 3rd party APIs
 4. World domination
-
-
-A WordPress project management plugin: think Basecamp + Pivotal Tracker + Harvest + etc.
-
-
 Roadmap: https://docs.google.com/document/d/1iKQXeoR9cZPPpkXD5F_74lFoSFYvbqOq09jZfnj8mok/edit?usp=sharing
