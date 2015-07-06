@@ -73,6 +73,8 @@ get_header(); ?>
 			
 					$doctors = get_posts(array(
 						'post_type' => 'time_entry',
+						'posts_per_page' => -1, 
+						'post_status' => 'publish',
 						'meta_query' => array(
 							array(
 								'key' => 'related_user_stories', // name of custom field
