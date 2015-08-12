@@ -962,3 +962,67 @@ add_action("wp_ajax_nopriv_get_developers_hours", "get_developers_hours");
 
 
 add_action( 'wp_enqueue_scripts', 'dev_hours_scripts' );
+
+// Admin Columns Pro
+if ( function_exists( 'ac_register_columns' ) ) {
+	ac_register_columns( 'time_entry', array(
+		'title' => array(
+			'column-name' => 'title',
+			'type' => 'title',
+			'clone' => '',
+			'label' => 'Title',
+			'width' => '',
+			'width_unit' => '%',
+			'sort' => 'on',
+			'edit' => 'on'
+		),
+		'author' => array(
+			'column-name' => 'author',
+			'type' => 'author',
+			'clone' => '',
+			'label' => 'Author',
+			'width' => '',
+			'width_unit' => '%',
+			'sort' => 'on',
+			'edit' => 'on'
+		),
+		'date' => array(
+			'column-name' => 'date',
+			'type' => 'date',
+			'clone' => '',
+			'label' => 'Date',
+			'width' => '',
+			'width_unit' => '%',
+			'edit' => 'off',
+			'date_save_format' => ''
+		),
+		'column-acf_field' => array(
+			'column-name' => 'column-acf_field',
+			'type' => 'column-acf_field',
+			'clone' => '',
+			'label' => 'Time Entry Categories',
+			'width' => '',
+			'width_unit' => '%',
+			'field' => 'field_53d96941d7228',
+			'filter' => 'on',
+			'sort' => 'on',
+			'edit' => 'on'
+		),
+		'tmm_post_thumb' => array(
+			'column-name' => 'tmm_post_thumb',
+			'type' => 'tmm_post_thumb',
+			'clone' => '',
+			'label' => 'Featured',
+			'width' => '',
+			'width_unit' => '%'
+		),
+		'taxonomy-time_entry_categories' => array(
+			'column-name' => 'taxonomy-time_entry_categories',
+			'type' => 'taxonomy-time_entry_categories',
+			'clone' => '',
+			'label' => 'Time Entry Categories',
+			'width' => '',
+			'width_unit' => '%'
+		)
+	) );
+}
