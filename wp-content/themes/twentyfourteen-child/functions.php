@@ -962,3 +962,80 @@ add_action("wp_ajax_nopriv_get_developers_hours", "get_developers_hours");
 
 
 add_action( 'wp_enqueue_scripts', 'dev_hours_scripts' );
+
+
+// Admin Columns Pro settings
+if ( function_exists( 'ac_register_columns' ) ) {
+	ac_register_columns( 'time_entry', array(
+		'title' => array(
+			'column-name' => 'title',
+			'type' => 'title',
+			'clone' => '',
+			'label' => 'Title',
+			'width' => '',
+			'width_unit' => '%',
+			'sort' => 'on',
+			'edit' => 'off'
+		),
+		'author' => array(
+			'column-name' => 'author',
+			'type' => 'author',
+			'clone' => '',
+			'label' => 'Author',
+			'width' => '',
+			'width_unit' => '%',
+			'sort' => 'on',
+			'edit' => 'off'
+		),
+		'taxonomy-time_entry_categories' => array(
+			'column-name' => 'taxonomy-time_entry_categories',
+			'type' => 'taxonomy-time_entry_categories',
+			'clone' => '',
+			'label' => 'Time Entry Categories',
+			'width' => '',
+			'width_unit' => '%'
+		),
+		'tmm_post_thumb' => array(
+			'column-name' => 'tmm_post_thumb',
+			'type' => 'tmm_post_thumb',
+			'clone' => '',
+			'label' => 'Featured',
+			'width' => '',
+			'width_unit' => '%'
+		),
+		'column-acf_field-1' => array(
+			'column-name' => 'column-acf_field-1',
+			'type' => 'column-acf_field',
+			'clone' => '1',
+			'label' => 'Related To-Dos',
+			'width' => '',
+			'width_unit' => '%',
+			'field' => 'field_53549855f0f97',
+			'sort' => 'on'
+		),
+		'column-acf_field-2' => array(
+			'column-name' => 'column-acf_field-2',
+			'type' => 'column-acf_field',
+			'clone' => '2',
+			'label' => 'Billable?',
+			'width' => '',
+			'width_unit' => '%',
+			'field' => 'field_53d96941d7228',
+			'filter' => 'off',
+			'sort' => 'on',
+			'edit' => 'off'
+		),
+		'column-acf_field-3' => array(
+			'column-name' => 'column-acf_field-3',
+			'type' => 'column-acf_field',
+			'clone' => '3',
+			'label' => 'Date Worked',
+			'width' => '',
+			'width_unit' => '%',
+			'field' => 'field_5335d9dc72314',
+			'filter' => 'off',
+			'sort' => 'on',
+			'edit' => 'off'
+		)
+	) );
+}
