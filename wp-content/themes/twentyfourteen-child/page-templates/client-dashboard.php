@@ -46,7 +46,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 	);
 	$myposts = get_posts( $args );
 	$totalhoursinvested = 0;
-	
+	$totalhoursinvested_nonbillable = 0;
 	foreach ( $myposts as $post ) : setup_postdata( $post ); 
 		$date1 = get_field('date_worked');
 		if ($date1) {
@@ -61,10 +61,31 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 		
 	    $history_hours_content.= '<li><a href="'. get_permalink() .'">'. $related_user_stories[0]->post_title .': '.get_field('hours_invested').  ' hours ( '.$date3 .' -by: ' .get_the_author().' )</a></li>';
 	    
-		$totalhoursinvested += get_field('hours_invested'); 
+	    //Billable hours
+	    $time_entry_categories = get_field( 'time_entry_categories' );
+	    
+	    echo $time_entry_categories[0] . ': ' . get_the_date() . '     ';
+	    
+	    if ( $time_entry_categories[0] == 11 ) {
+			
+		} 
+		//non-billable hours
+		if ( $time_entry_categories[0] == 12 ) {
+			$totalhoursinvested_nonbillable += get_field('hours_invested');
+		} else {
+			//it's billable time
+			$totalhoursinvested += get_field('hours_invested');
+		}
+		
 	endforeach; 
 	
+	echo '$totalhoursinvested_nonbillable = ' . $totalhoursinvested_nonbillable . '<br>';
+	echo '$totalhoursinvested = ' . $totalhoursinvested . '<br>';
+	
 	$hoursAvailable = $totalhourspurchased-$totalhoursinvested;
+
+	
+	
 	if($hoursAvailable>2){
 	   $hrclass='greenhr';
 	}elseif($hoursAvailable>1){
