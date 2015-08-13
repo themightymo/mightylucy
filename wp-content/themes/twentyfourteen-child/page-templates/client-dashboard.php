@@ -25,7 +25,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 	$totalhourspurchased = 0;
 	// check if the repeater field has rows of data
 	if( have_rows('prepaid_hours', 'options') ):
-		$purchasedcontent='<h2>Purchase History</h2><a id="togglepurchasehistory" href="#">View Purchase History</a>';
+		$purchasedcontent='<h2>Purchase History</h2><a id="togglepurchasehistory" href="#">Toggle History Hours</a>';
 		$purchasedcontent.='<ul id="purchase_history">';
 		while ( have_rows('prepaid_hours', 'options') ) : the_row();
 			$purchasedcontent.= '<li>You purchased ' . get_sub_field('number_of_hours_purchased', 'options') . ' hours on ' . date("F j, Y", strtotime(get_sub_field('date_of_purchase', 'options'))) . ' <em>'.get_sub_field('hours_description', 'options').'</em></li>';
@@ -46,7 +46,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 	);
 	$myposts = get_posts( $args );
 	$totalhoursinvested = 0;
-	$totalhoursinvested_nonbillable = 0;
+	
 	foreach ( $myposts as $post ) : setup_postdata( $post ); 
 		$date1 = get_field('date_worked');
 		if ($date1) {
@@ -61,23 +61,10 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 		
 	    $history_hours_content.= '<li><a href="'. get_permalink() .'">'. $related_user_stories[0]->post_title .': '.get_field('hours_invested').  ' hours ( '.$date3 .' -by: ' .get_the_author().' )</a></li>';
 	    
-	    //Billable hours
-	    $time_entry_categories = get_field( 'time_entry_categories' );
-	    
-		//non-billable hours
-		if ( $time_entry_categories[0] == 12 ) {
-			$totalhoursinvested_nonbillable += get_field('hours_invested');
-		} else {
-			//it's billable time
-			$totalhoursinvested += get_field('hours_invested');
-		}
-		
+		$totalhoursinvested += get_field('hours_invested'); 
 	endforeach; 
 	
 	$hoursAvailable = $totalhourspurchased-$totalhoursinvested;
-
-	
-	
 	if($hoursAvailable>2){
 	   $hrclass='greenhr';
 	}elseif($hoursAvailable>1){
@@ -266,7 +253,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							$myposts = get_posts( $args ); ?>
 							<?php if ($myposts) : ?>
 							<h2>Ready For Client Review</h2>
-							<a id="ready_for_client_review" href="#">Toggle "Ready For Client Review" Items</a>
+							<a id="ready_for_client_review" href="#">Toggle History Hours</a>
 							<ul id="ready_for_client">
 							<?php
 							foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
@@ -295,7 +282,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							$totalPosts = count($myposts);
 							if ($totalPosts > 0) { ?>
 								<h2>On Hold To-Do's</h2>
-								<a id="on_hold_todos" href="#">View "On Hold" To-Dos</a>
+								<a id="on_hold_todos" href="#">Toggle History Hours</a>
 								<ul id="on_hold">
 								<?php
 								foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
@@ -338,19 +325,16 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							
 							
 							
-							<h2>View Time Entries</h2>
-							<a id="togglehistoryhours" href="#">View Time Entries</a>
+							<h2>History of Hours Used</h2>
+							<a id="togglehistoryhours" href="#">Toggle History Hours</a>
 							<ul id="history_hours">
 								<?php echo $history_hours_content; ?>
 							</ul>	
 								<?php echo $purchasedcontent; ?>
 								<div style="clear: both;"></div>
-								<p>
-								Total Hours Purchased: <?php echo $totalhourspurchased; ?><br />
-								Total Hours Invested (billable): <?php echo $totalhoursinvested; ?><br />
-								<span style="font-style: italic;color:#999999;">Total Hours Invested (non-billable/not billed): <?php echo $totalhoursinvested_nonbillable; ?></span><br />
+								<p>Hours invested: <?php echo $totalhoursinvested; ?><br />
 								<strong class="<?php echo  $hrclass; ?>">Available hours remaining: <?php echo $hoursAvailable; ?></strong><br />
-								<!-- <strong>Hours required (estimated): <?php echo $totalHoursEstimated; ?></strong></p> -->
+								<strong>Hours required (estimated): <?php echo $totalHoursEstimated; ?></strong></p>
 
 									
 								<a href="https://www.themightymo.com/agreements/hourly-wordpress-support-agreement/">Purchase additional support hours.</a>

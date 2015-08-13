@@ -1008,6 +1008,40 @@ if ( function_exists( 'ac_register_columns' ) ) {
 			'sort' => 'on',
 			'edit' => 'on'
 		),
+		'column-acf_field-1' => array(
+			'column-name' => 'column-acf_field-1',
+			'type' => 'column-acf_field',
+			'clone' => '1',
+			'label' => 'Hours Invested',
+			'width' => '',
+			'width_unit' => '%',
+			'field' => 'field_53548c4ef8774',
+			'filter' => 'off',
+			'sort' => 'on',
+			'edit' => 'on'
+		),
+		'column-acf_field-2' => array(
+			'column-name' => 'column-acf_field-2',
+			'type' => 'column-acf_field',
+			'clone' => '2',
+			'label' => 'Date Worked',
+			'width' => '',
+			'width_unit' => '%',
+			'field' => 'field_5335d9dc72314',
+			'filter' => 'off',
+			'sort' => 'on',
+			'edit' => 'on'
+		),
+		'column-acf_field-3' => array(
+			'column-name' => 'column-acf_field-3',
+			'type' => 'column-acf_field',
+			'clone' => '3',
+			'label' => 'Date Worked',
+			'width' => '',
+			'width_unit' => '%',
+			'field' => 'field_53549855f0f97',
+			'sort' => 'on'
+		),
 		'tmm_post_thumb' => array(
 			'column-name' => 'tmm_post_thumb',
 			'type' => 'tmm_post_thumb',
