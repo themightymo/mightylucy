@@ -31,6 +31,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 			$purchasedcontent.= '<li>You purchased ' . get_sub_field('number_of_hours_purchased', 'options') . ' hours on ' . date("F j, Y", strtotime(get_sub_field('date_of_purchase', 'options'))) . ' <em>'.get_sub_field('hours_description', 'options').'</em></li>';
 			$totalhourspurchased += get_sub_field('number_of_hours_purchased', 'options');
 		endwhile;
+		$purchasedcontent.='<li><span style="font-weight:bold;">Total Hours Purchased: ' . $totalhourspurchased . '</span></li>';
 		$purchasedcontent.='</ul>';
 		
 	else :
@@ -340,10 +341,11 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							</ul>	
 								<?php echo $purchasedcontent; ?>
 								<div style="clear: both;"></div>
-								<p>Billable Hours invested: <?php echo $billableTotalhoursinvested; ?><br />
+								<p>
+								Billable Hours invested: <?php echo $billableTotalhoursinvested; ?><br />
 								<span style="color:#6a6a6a;font-style:italic;">Non-Billable Hours invested: <?php echo $nonbillableTotalhoursinvested; ?></span><br />
 								<strong class="<?php echo  $hrclass; ?>">Available hours remaining: <?php echo $hoursAvailable; ?></strong><br />
-								<strong>Hours required (estimated): <?php echo $totalHoursEstimated; ?></strong></p>
+								<!-- <strong>Hours required (estimated): <?php echo $totalHoursEstimated; ?></strong></p> -->
 
 									
 								<a href="https://www.themightymo.com/agreements/hourly-wordpress-support-agreement/">Purchase additional support hours.</a>
