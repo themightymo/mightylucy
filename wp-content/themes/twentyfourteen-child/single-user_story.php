@@ -71,7 +71,7 @@ get_header(); ?>
 					*  This method uses the meta_query LIKE to match the string "123" to the database value a:1:{i:0;s:3:"123";} (serialized array)
 					*/
 			
-					$doctors = get_posts(array(
+					$timeEntries = get_posts(array(
 						'post_type' => 'time_entry',
 						'posts_per_page' => -1, 
 						'post_status' => 'publish',
@@ -85,16 +85,17 @@ get_header(); ?>
 					));
 			
 					?>
-					<?php if( $doctors ): ?>
+					<?php if( $timeEntries ): ?>
 						<quote>
 							Time Entries for This To-Do:
 							<ul>
-							<?php foreach( $doctors as $doctor ) : ?>
-								<?php $photo = get_field( 'hours_invested', $doctor->ID ); ?>
+							<?php foreach( $timeEntries as $timeEntry ) : ?>
+								<?php $hours_invested = get_field( 'hours_invested', $timeEntry->ID ); ?>
+								<?php $date_worked = get_field( 'date_worked', $timeEntry->ID ); ?>
 								<li>
-									<a href="<?php echo get_permalink( $doctor->ID ); ?>">
-										<?php echo get_the_title( $doctor->ID ); ?> (<?php echo $photo; ?> hours on <?php echo date( "F d Y", strtotime( $doctor->post_date ) ); ?>)
-										<?php $totalHoursWorked += $photo; ?>
+									<a href="<?php echo get_permalink( $timeEntry->ID ); ?>">
+										<?php echo get_the_title( $timeEntry->ID ); ?> (<?php echo $hours_invested; ?> hours on <?php echo date( "F d, Y", strtotime( $date_worked ) ); ?>)
+										<?php $totalHoursWorked += $hours_invested; ?>
 									</a>
 								</li>
 							<?php endforeach; ?>
