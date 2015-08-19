@@ -94,7 +94,7 @@ get_header(); ?>
 								<?php $date_worked = get_field( 'date_worked', $timeEntry->ID ); ?>
 								<li>
 									<a href="<?php echo get_permalink( $timeEntry->ID ); ?>">
-										<?php echo get_the_title( $timeEntry->ID ); ?> (<?php echo $hours_invested; ?> hours on <?php echo date( "F d, Y", strtotime( $date_worked ) ); ?>)
+										<?php echo get_the_title( $timeEntry->ID ); ?> (<?php echo $hours_invested; ?> hours on <?php echo date( "F d, Y", strtotime( $date_worked ) ); ?><?php if ( has_term('non-billable','time_entry_categories') ) { echo ', unbilled'; } ?>)
 										<?php $totalHoursWorked += $hours_invested; ?>
 									</a>
 								</li>
