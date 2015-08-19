@@ -290,7 +290,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							$totalPosts = count($myposts);
 							if ($totalPosts > 0) { ?>
 								<h2>On Hold To-Do's</h2>
-								<a id="on_hold_todos" href="#">Toggle On Hold Todos</a>
+								<a id="on_hold_todos" href="#">Toggle On Hold To-dos</a>
 								<ul id="on_hold">
 								<?php
 								foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
