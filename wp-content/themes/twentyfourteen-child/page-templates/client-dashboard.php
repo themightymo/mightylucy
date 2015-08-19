@@ -342,8 +342,11 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 								<?php echo $purchasedcontent; ?>
 								<div style="clear: both;"></div>
 								<p>
-								Billable Hours invested: <?php echo $billableTotalhoursinvested; ?><br />
-								<span style="color:#6a6a6a;font-style:italic;">Non-Billable Hours invested: <?php echo $nonbillableTotalhoursinvested; ?></span><br />
+								Billable Hours invested: <?php echo $billableTotalhoursinvested; ?>
+								<?php if ( $nonbillableTotalhoursinvested != 0 ) { ?><br />
+									<span style="color:#6a6a6a;font-style:italic;">Non-Billable Hours invested: <?php echo $nonbillableTotalhoursinvested; ?></span>
+								<?php } ?>
+								<br />
 								<strong class="<?php echo  $hrclass; ?>">Available hours remaining: <?php echo $hoursAvailable; ?></strong><br />
 								<!-- <strong>Hours required (estimated): <?php echo $totalHoursEstimated; ?></strong></p> -->
 
