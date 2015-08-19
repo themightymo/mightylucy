@@ -25,7 +25,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 	$totalhourspurchased = 0;
 	// check if the repeater field has rows of data
 	if( have_rows('prepaid_hours', 'options') ):
-		$purchasedcontent='<h2>Purchase History</h2><a id="togglepurchasehistory" href="#">Toggle History Hours</a>';
+		$purchasedcontent='<h2>Purchase History</h2><a id="togglepurchasehistory" href="#">Toggle Purchase History</a>';
 		$purchasedcontent.='<ul id="purchase_history">';
 		while ( have_rows('prepaid_hours', 'options') ) : the_row();
 			$purchasedcontent.= '<li>You purchased ' . get_sub_field('number_of_hours_purchased', 'options') . ' hours on ' . date("F j, Y", strtotime(get_sub_field('date_of_purchase', 'options'))) . ' <em>'.get_sub_field('hours_description', 'options').'</em></li>';
@@ -45,7 +45,9 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 		'order' => 'DESC'
 	);
 	$myposts = get_posts( $args );
-	$totalhoursinvested = 0;
+	
+	$billableTotalhoursinvested = 0;
+	$nonbillableTotalhoursinvested = 0;
 	
 	foreach ( $myposts as $post ) : setup_postdata( $post ); 
 		$date1 = get_field('date_worked');
@@ -61,10 +63,16 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 		
 	    $history_hours_content.= '<li><a href="'. get_permalink() .'">'. $related_user_stories[0]->post_title .': '.get_field('hours_invested').  ' hours ( '.$date3 .' -by: ' .get_the_author().' )</a></li>';
 	    
-		$totalhoursinvested += get_field('hours_invested'); 
+	    if ( has_term('non-billable','time_entry_categories') ) {
+		    // the time is non-billable
+	    	$nonbillableTotalhoursinvested += get_field('hours_invested');
+	    } else {
+		    // the time is billable
+			$billableTotalhoursinvested += get_field('hours_invested');
+		} 
 	endforeach; 
 	
-	$hoursAvailable = $totalhourspurchased-$totalhoursinvested;
+	$hoursAvailable = $totalhourspurchased-$billableTotalhoursinvested;
 	if($hoursAvailable>2){
 	   $hrclass='greenhr';
 	}elseif($hoursAvailable>1){
@@ -282,7 +290,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							$totalPosts = count($myposts);
 							if ($totalPosts > 0) { ?>
 								<h2>On Hold To-Do's</h2>
-								<a id="on_hold_todos" href="#">Toggle History Hours</a>
+								<a id="on_hold_todos" href="#">Toggle On Hold Todos</a>
 								<ul id="on_hold">
 								<?php
 								foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
@@ -326,13 +334,14 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							
 							
 							<h2>History of Hours Used</h2>
-							<a id="togglehistoryhours" href="#">Toggle History Hours</a>
+							<a id="togglehistoryhours" href="#">Toggle Hours Used</a>
 							<ul id="history_hours">
 								<?php echo $history_hours_content; ?>
 							</ul>	
 								<?php echo $purchasedcontent; ?>
 								<div style="clear: both;"></div>
-								<p>Hours invested: <?php echo $totalhoursinvested; ?><br />
+								<p>Billable Hours invested: <?php echo $billableTotalhoursinvested; ?><br />
+								<span style="color:#6a6a6a;font-style:italic;">Non-Billable Hours invested: <?php echo $nonbillableTotalhoursinvested; ?></span><br />
 								<strong class="<?php echo  $hrclass; ?>">Available hours remaining: <?php echo $hoursAvailable; ?></strong><br />
 								<strong>Hours required (estimated): <?php echo $totalHoursEstimated; ?></strong></p>
 
