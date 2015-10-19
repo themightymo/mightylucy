@@ -62,7 +62,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 		
 		$related_user_stories = get_field('related_user_stories', $post->ID);
 		
-	    $history_hours_content.= '<li><a href="'. get_permalink() .'">'. $related_user_stories[0]->post_title .': '.get_field('hours_invested').  ' hours ( '.$date3 .' -by: ' .get_the_author().' )</a></li>';
+	    $history_hours_content.= '<li><a href="'. get_permalink() .'" title="' . get_the_title() . '">'. $related_user_stories[0]->post_title .': '.get_field('hours_invested').  ' hours ( '.$date3 .' -by: ' .get_the_author().' )</a></li>';
 	    
 	    if ( has_term('non-billable','time_entry_categories') ) {
 		    // the time is non-billable
