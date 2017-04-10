@@ -8,12 +8,12 @@ function get_developers_hours(){
 	$end_date =  str_replace('-','',$_GET['end_date']) ;
 	//Hide sites that are archived, mature, spam, or deleted
 	$siteArgs = array(
-		'archived'   => 0,
-		'mature'     => 0,
-		'spam'       => 0,
-		'deleted'    => 0,
+		'archived'   => false,
+		'mature'     => false,
+		'spam'       => false,
+		'deleted'    => false,
 	);
-	$blog_list = get_sites($siteArgs);
+	$blog_list = wp_get_sites($siteArgs);
 	$blog_list[]=array('blog_id',1); //insert mightylucy entries
 	//var_dump($blog_list);
 	
