@@ -12,6 +12,7 @@ function get_developers_hours(){
 		'mature'     => false,
 		'spam'       => false,
 		'deleted'    => false,
+        'limit'      => 200,
 	);
 	$blog_list = wp_get_sites($siteArgs);
 	$blog_list[]=array('blog_id',1); //insert mightylucy entries
