@@ -350,8 +350,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 								<strong class="<?php echo  $hrclass; ?>">Available hours remaining: <?php echo $hoursAvailable; ?></strong><br />
 								<!-- <strong>Hours required (estimated): <?php echo $totalHoursEstimated; ?></strong></p> -->
 
-									
-								<a href="https://www.themightymo.com/agreements/hourly-wordpress-support-agreement/">Purchase additional support hours.</a>
+						
 							</ul>													
 							
 							
