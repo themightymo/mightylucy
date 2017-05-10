@@ -45,6 +45,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 										'mature'     => false,
 										'spam'       => false,
 										'deleted'    => false,
+										'limit'      => 200,
 										'sort_column'=> 'registered',
 									);
 									
