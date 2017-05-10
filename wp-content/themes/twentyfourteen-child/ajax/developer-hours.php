@@ -15,7 +15,7 @@ function get_developers_hours(){
         'limit'      => 200,
 	);
 	$blog_list = wp_get_sites($siteArgs);
-	$blog_list[]=array('blog_id',1); //insert mightylucy entries
+	//$blog_list[]=array('blog_id',1); //insert mightylucy entries
 	//var_dump($blog_list);
 	
 	foreach ($blog_list AS $blog) {
