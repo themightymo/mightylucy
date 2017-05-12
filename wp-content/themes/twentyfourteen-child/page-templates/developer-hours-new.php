@@ -97,6 +97,7 @@ if ( network_have_posts() ) {
 								    'archived'   => false,
 								    'mature'     => false,
 								    'spam'       => false,
+									'limit'      => 200,
 								    'deleted'    => false,
 								);
 								$blog_list = wp_get_sites($siteArgs);
