@@ -119,3 +119,7 @@ li.redhr a{
 	padding: 0;
 	max-width: 100%;
 }
+
+.site-content .entry-content {
+	max-width: none;
+}
