@@ -1042,6 +1042,16 @@ if ( function_exists( 'ac_register_columns' ) ) {
 			'field' => 'field_53549855f0f97',
 			'sort' => 'on'
 		),
+		'column-acf_field-4' => array(
+			'column-name' => 'column-acf_field-4',
+			'type' => 'column-acf_field',
+			'clone' => '4',
+			'label' => 'Related User Stories',
+			'width' => '',
+			'width_unit' => '%',
+			'field' => 'field_53549855f0f97',
+			'sort' => 'on'
+		),
 		'tmm_post_thumb' => array(
 			'column-name' => 'tmm_post_thumb',
 			'type' => 'tmm_post_thumb',

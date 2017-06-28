@@ -123,3 +123,7 @@ li.redhr a{
 .site-content .entry-content {
 	max-width: none;
 }
+
+.comments-area {
+	display:none;
+}
