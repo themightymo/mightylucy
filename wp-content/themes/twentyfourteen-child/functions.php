@@ -327,7 +327,7 @@ if(function_exists("register_field_group"))
 			),
 			array (
 				'key' => 'field_53549855f0f97',
-				'label' => 'Related User Stories',
+				'label' => 'Related To-Dos',
 				'name' => 'related_user_stories',
 				'type' => 'relationship',
 				'return_format' => 'object',
@@ -345,6 +345,7 @@ if(function_exists("register_field_group"))
 					1 => 'post_title',
 				),
 				'max' => '1',
+				'required' => 1,
 			),
 		),
 		'location' => array (
