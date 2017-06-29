@@ -194,7 +194,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							$totalHoursEstimated = 0;
 							foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
 								<li  id="<?php echo $blog_id.'x'.$post->ID.'x'.$post->menu_order;?>" class="ui-state-default <?php echo $hrclass;?>" ><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-									<a href="<?php the_permalink(); ?>"><?php the_title(); ?> (<?php the_field('how_many_hours_will_this_to-do_require'); ?>&nbsp;<?php if (get_field('how_many_hours_will_this_to-do_require') == 1) { echo 'hour'; } else { echo 'hours'; } ?>)</a><?php if (get_field('assigned_to')){
+									<a href="<?php the_permalink(); ?>"><?php the_title(); ?> (Estimated: <?php the_field('how_many_hours_will_this_to-do_require'); ?>&nbsp;<?php if (get_field('how_many_hours_will_this_to-do_require') == 1) { echo 'hour'; } else { echo 'hours'; } ?>)</a><?php if (get_field('assigned_to')){
 										$assigned_to = get_field('assigned_to');
 										echo ' [' . $assigned_to['display_name'] . ']';
 										
