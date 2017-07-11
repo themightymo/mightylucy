@@ -81,7 +81,7 @@
 		
 		?>
 		<div id="t_story_status"><table><?php echo $options;?></table><div class="ajax_status"></div></div>
-		<p>This to-do was requested by <span style="font-weight:bold"><?php echo ucwords(get_the_author()); ?> on <?php the_date();?></span> and is assigned to <span style="font-weight:bold"><?php $assigned_to = get_field('assigned_to'); echo $assigned_to['display_name']; ?></span>.</p>
+		<p>This to-do was requested by <span style="font-weight:bold"><?php echo ucwords(get_the_author()); ?> on <?php the_date();?></span> and is assigned to <span style="font-weight:bold"><?php $assigned_to = get_field('assigned_to'); echo $assigned_to['display_name']; ?></span>. Estimated: <?php the_field('how_many_hours_will_this_to-do_require'); ?></p>
 		
 		<?php
 		
