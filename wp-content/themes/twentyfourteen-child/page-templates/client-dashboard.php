@@ -268,7 +268,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							$myposts = get_posts( $args ); ?>
 							<?php if ($myposts) : ?>
 							<h2>Ready For Client Review</h2>
-							<a id="ready_for_client_review" href="#">Toggle History Hours</a>
+							<a id="ready_for_client_review" href="#">Toggle Ready For Client Review</a>
 							<ul id="ready_for_client">
 							<?php
 							foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
@@ -383,6 +383,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 				(function($){
 					//init toggle off
 					//$('#ready_for_client').hide();
+					$('#ready_for_client').hide();
 					$('#on_hold').hide();
 					$('#completed_to_dos').hide();
 					$('#history_hours').hide();
