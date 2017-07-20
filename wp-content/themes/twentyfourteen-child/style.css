@@ -127,3 +127,9 @@ li.redhr a{
 .comments-area {
 	display:none;
 }
+.entry-title {
+	text-transform: none;
+}
+.site-content .entry-header {
+	max-width: 100%;
+}
