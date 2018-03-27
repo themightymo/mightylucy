@@ -783,6 +783,24 @@ function time_entry_updated( $post_id ) {
 	
 }
 
+
+
+
+/* 
+	Send Hours Low and Hours Zero emails once per week.
+*/
+if ( ! wp_next_scheduled( 'my_task_hook' ) ) {
+  wp_schedule_event( time(), 'hourly', 'my_task_hook' );
+}
+
+add_action( 'my_task_hook', 'my_task_function' );
+
+function my_task_function() {
+  wp_mail( 'your@email.com', 'Automatic email', 'Automatic scheduled email from WordPress.');
+}
+
+
+
 function email_low($remainingtime, $totalhourspurchased, $totalhoursinvested) {
 	
 	$subject_low = 'Time for more Mighty';
