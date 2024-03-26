@@ -1,5 +1,7 @@
 # README #
 
+DEPRECATED in favor of https://github.com/themightymo/mightylucy-new
+
 MightyLucy is a WordPress project management plugin: think Basecamp + Pivotal Tracker + Harvest + etc.
 
 This repository includes all custom code used on mightylucy.com.
